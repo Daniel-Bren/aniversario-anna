@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Feliz Aniversário</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap');
+        body {
+            background-color: pink;
+        }
+
+        .painel {
+            margin: auto;
+            background-color: #9BCBCD;
+            width: 500px;
+            height: 500px;
+            border-radius: 20px;
+            text-align: center;
+            padding-top: 50px;
+            font-family:'Parkinsans' ;
+            box-shadow: 3px 3px 3px 0px;
+            position: relative; /* painel */
+        }
+
+        #sim {
+            height: 40px;
+            width: 60px;
+            background-color: #09861e;
+            border: 2px solid white;
+            border-radius: 10px;
+            color: white;
+            margin-right: 10px;
+        }
+
+        #sim:hover {
+    background-color: #0ca332;
+    cursor: pointer;
+        }
+        #nao {
+            height: 40px;
+            width: 60px;
+            background-color: red;
+            border: 2px solid white;
+            border-radius: 10px;
+            color: white;
+            position: relative; /* alinhar botão não com o sim, chato demais */
+        }
+        /* Fundo escurecido */
+.modal {
+    display: none; /* Inicialmente oculto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro translúcido */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Sempre acima */
+}
+
+/* Conteúdo centralizado */
+.modal-content {
+    width:100%;
+    height:-10%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+.modal-content img {
+    max-width: 90%; /* Ajusta imagem ao tamanho da tela */
+    border-radius: 10px;
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="painel">
+        <h1>Feliz Aniversário!!!</h1>
+        <img width="57%" src="rod/giphy.webp" alt="pinguin">
+        <h2>Aceita um presente misterioso?</h2>
+        <!-- Botões -->
+        <button id="sim">Sim</button>
+        <button onmouseover="fuja()" id="nao">Não</button>
+    
+    </div>
+
+    
+    <div id="modal" class="modal">  
+        <div class="modal-content">
+            <img width="45%" id="presente-img" src="rod/Retirada.png" alt="Presente" />
+        </div>
+    </div>
+
+    <script>
+        function fuja() {
+            var botaoNao = document.getElementById("nao");
+
+            // onde o botão vai fugir
+            botaoNao.style.position = "absolute";
+
+            var painel = document.querySelector('.painel'); 
+            var larguraPainel = painel.offsetWidth;
+            var alturaPainel = painel.offsetHeight;
+
+            var maxX = larguraPainel - botaoNao.offsetWidth;
+            var maxY = alturaPainel - botaoNao.offsetHeight;
+
+            var aleatorioX = Math.floor(Math.random() * maxX);
+            var aleatorioY = Math.floor(Math.random() * maxY);
+
+            botaoNao.style.left = aleatorioX + "px";
+            botaoNao.style.top = aleatorioY + "px";
+        }
+
+        document.getElementById("sim").addEventListener("click", function() {
+    var modal = document.getElementById("modal");
+    modal.style.display = "flex"; // Exibe o modal
+});
+
+// Fecha o modal ao clicar fora da imagem
+document.getElementById("modal").addEventListener("click", function(e) {
+    if (e.target === this) { // Garante que clicou fora do conteúdo
+        this.style.display = "none";
+    }
+});
+    </script>
+</body>
+
+</html>
